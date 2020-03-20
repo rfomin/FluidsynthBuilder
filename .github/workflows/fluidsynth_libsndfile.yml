@@ -1,0 +1,26 @@
+name: FluidSynth + Libsndfile
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: FluidSynth + Libsndfile
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build
+      run: ./build.sh
+
+    - name: Create Package
+      run: |
+        mkdir -p package/i686 package/x86_64
+        for arch in i686 x86_64; do
+          cp build/$arch/bin/libfluidsynth*.dll build/$arch/bin/libsndfile*.dll package/$arch
+        done
+
+    - name: Upload Package
+      uses: actions/upload-artifact@v1
+      with:
+        path: package
+        name: fluidsynth_libsndfile

@@ -275,7 +275,7 @@ launch_container() {
 	if ! docker image inspect "$ImageName" &> /dev/null; then
 		docker build -t "$ImageName" . || return
 	fi
-	docker run --rm -it -v "$(pwd):/src" "$ImageName"
+	docker run --rm -t -v "$(pwd):/src" "$ImageName"
 }
 
 main() {
