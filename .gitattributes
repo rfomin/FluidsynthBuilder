@@ -1,0 +1,2 @@
+# When running inside the container the shebang needs to be lf
+*.sh text eol=lf

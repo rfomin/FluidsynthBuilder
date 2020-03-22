@@ -16,15 +16,16 @@ readonly OpusVersion=1.3.1
 readonly SndfileVersion=4bdd7414602946a18799b514001b0570e8693a47
 
 readonly ScriptDir=${0%/*}
+declare BuildDir="$ScriptDir/build"
 
 build_glib() {
 	declare Arch=$1
 	shift
 
-	mkdir -p "$ScriptDir/build/glib-$Arch" &&
-	cd "$ScriptDir/build/glib-$Arch" &&
+	mkdir -p "$BuildDir/glib-$Arch" &&
+	cd "$BuildDir/glib-$Arch" &&
 
-	meson ../../glib \
+	meson "$ScriptDir/glib" \
 		--prefix="$ScriptDir/build/$Arch" \
 		--cross-file "$ScriptDir/cross-$Arch.txt" \
 		--buildtype release \
@@ -40,10 +41,10 @@ build_fluidsynth() {
 	declare Arch=$1
 	shift
 
-	mkdir -p "$ScriptDir/build/fluidsynth-$Arch" &&
-	cd "$ScriptDir/build/fluidsynth-$Arch" &&
+	mkdir -p "$BuildDir/fluidsynth-$Arch" &&
+	cd "$BuildDir/fluidsynth-$Arch" &&
 
-	CXX="$Arch-w64-mingw32-g++-posix" CC="$Arch-w64-mingw32-gcc-posix" cmake ../../fluidsynth \
+	CXX="$Arch-w64-mingw32-g++-posix" CC="$Arch-w64-mingw32-gcc-posix" cmake "$ScriptDir/fluidsynth" \
 		-GNinja \
 		-DCMAKE_INSTALL_PREFIX="$ScriptDir/build/$Arch" \
 		-DCMAKE_BUILD_TYPE=Release \
@@ -62,10 +63,10 @@ build_libogg() {
 	declare Arch=$1
 	shift
 
-	mkdir -p "$ScriptDir/build/libogg-$Arch" &&
-	cd "$ScriptDir/build/libogg-$Arch" &&
+	mkdir -p "$BuildDir/libogg-$Arch" &&
+	cd "$BuildDir/libogg-$Arch" &&
 
-	CXX="$Arch-w64-mingw32-g++-posix" CC="$Arch-w64-mingw32-gcc-posix" cmake ../../libogg \
+	CXX="$Arch-w64-mingw32-g++-posix" CC="$Arch-w64-mingw32-gcc-posix" cmake "$ScriptDir/libogg" \
 		-GNinja \
 		-DCMAKE_INSTALL_PREFIX="$ScriptDir/build/$Arch" \
 		-DCMAKE_BUILD_TYPE=Release \
@@ -83,10 +84,10 @@ build_flac() {
 	declare Arch=$1
 	shift
 
-	mkdir -p "$ScriptDir/build/flac-$Arch" &&
-	cd "$ScriptDir/build/flac-$Arch" &&
+	mkdir -p "$BuildDir/flac-$Arch" &&
+	cd "$BuildDir/flac-$Arch" &&
 
-	CXX="$Arch-w64-mingw32-g++-posix" CC="$Arch-w64-mingw32-gcc-posix" cmake ../../flac \
+	CXX="$Arch-w64-mingw32-g++-posix" CC="$Arch-w64-mingw32-gcc-posix" cmake "$ScriptDir/flac" \
 		-GNinja \
 		-DCMAKE_INSTALL_PREFIX="$ScriptDir/build/$Arch" \
 		-DCMAKE_BUILD_TYPE=Release \
@@ -109,10 +110,10 @@ build_opus() {
 	declare Arch=$1
 	shift
 
-	mkdir -p "$ScriptDir/build/opus-$Arch" &&
-	cd "$ScriptDir/build/opus-$Arch" &&
+	mkdir -p "$BuildDir/opus-$Arch" &&
+	cd "$BuildDir/opus-$Arch" &&
 
-	CXX="$Arch-w64-mingw32-g++-posix" CC="$Arch-w64-mingw32-gcc-posix" cmake ../../opus \
+	CXX="$Arch-w64-mingw32-g++-posix" CC="$Arch-w64-mingw32-gcc-posix" cmake "$ScriptDir/opus" \
 		-GNinja \
 		-DCMAKE_INSTALL_PREFIX="$ScriptDir/build/$Arch" \
 		-DCMAKE_BUILD_TYPE=Release \
@@ -133,10 +134,10 @@ build_vorbis() {
 	declare Arch=$1
 	shift
 
-	mkdir -p "$ScriptDir/build/vorbis-$Arch" &&
-	cd "$ScriptDir/build/vorbis-$Arch" &&
+	mkdir -p "$BuildDir/vorbis-$Arch" &&
+	cd "$BuildDir/vorbis-$Arch" &&
 
-	CXX="$Arch-w64-mingw32-g++-posix" CC="$Arch-w64-mingw32-gcc-posix" cmake ../../vorbis \
+	CXX="$Arch-w64-mingw32-g++-posix" CC="$Arch-w64-mingw32-gcc-posix" cmake "$ScriptDir/vorbis" \
 		-GNinja \
 		-DCMAKE_INSTALL_PREFIX="$ScriptDir/build/$Arch" \
 		-DCMAKE_BUILD_TYPE=Release \
@@ -154,10 +155,10 @@ build_libinstpatch() {
 	declare Arch=$1
 	shift
 
-	mkdir -p "$ScriptDir/build/libinstpatch-$Arch" &&
-	cd "$ScriptDir/build/libinstpatch-$Arch" &&
+	mkdir -p "$BuildDir/libinstpatch-$Arch" &&
+	cd "$BuildDir/libinstpatch-$Arch" &&
 
-	CXX="$Arch-w64-mingw32-g++-posix" CC="$Arch-w64-mingw32-gcc-posix" cmake ../../libinstpatch \
+	CXX="$Arch-w64-mingw32-g++-posix" CC="$Arch-w64-mingw32-gcc-posix" cmake "$ScriptDir/libinstpatch" \
 		-GNinja \
 		-DCMAKE_INSTALL_PREFIX="$ScriptDir/build/$Arch" \
 		-DCMAKE_BUILD_TYPE=Release \
@@ -184,10 +185,10 @@ build_libsndfile() {
 	declare Arch=$1
 	shift
 
-	mkdir -p "$ScriptDir/build/libsndfile-$Arch" &&
-	cd "$ScriptDir/build/libsndfile-$Arch" &&
+	mkdir -p "$BuildDir/libsndfile-$Arch" &&
+	cd "$BuildDir/libsndfile-$Arch" &&
 
-	CXX="$Arch-w64-mingw32-g++-posix" CC="$Arch-w64-mingw32-gcc-posix" cmake ../../libsndfile \
+	CXX="$Arch-w64-mingw32-g++-posix" CC="$Arch-w64-mingw32-gcc-posix" cmake "$ScriptDir/libsndfile" \
 		-GNinja \
 		-DCMAKE_INSTALL_PREFIX="$ScriptDir/build/$Arch" \
 		-DCMAKE_BUILD_TYPE=Release \
@@ -272,15 +273,55 @@ patch_sources() {
 
 readonly ImageName=fluidsynth-builder
 launch_container() {
+	declare OutOfTree=$1
+	shift
+
 	if ! docker image inspect "$ImageName" &> /dev/null; then
 		docker build -t "$ImageName" . || return
 	fi
-	docker run --rm -t -v "$(pwd):/src" "$ImageName"
+
+	declare -a RunArgs=(
+		--rm
+		-t
+		-v "$(docker_pwd):/src"
+	)
+
+	if (( OutOfTree )); then
+		RunArgs+=(-e BUILD_OUT_OF_TREE=1)
+	fi
+
+	docker run "${RunArgs[@]}" "$ImageName"
 }
 
 main() {
 	declare Mode=$1
 	shift
+
+	# On Windows we'll want to be able to put build files inside the container for performance
+	# Plus Windows defender is a huge fan of the temporary build files
+	if [[ $BUILD_OUT_OF_TREE ]]; then
+		BuildDir=/build
+		mkdir "$BuildDir"
+	fi
+
+	# Check for Windows and alias the docker command
+	declare OutOfTree
+	if command -v winpty &> /dev/null; then
+		docker() {
+			winpty docker "$@"
+		}
+		docker_pwd() {
+			cygpath -w "$(pwd)"
+		}
+
+		OutOfTree=1
+	else
+		docker_pwd() {
+			pwd
+		}
+
+		OutOfTree=0
+	fi
 
 	if [[ $Mode == 'compile' ]]; then
 		rm -rf "$ScriptDir/build" || return
@@ -306,7 +347,7 @@ main() {
 	else
 		fetch_sources &&
 			patch_sources &&
-			launch_container || return
+			launch_container "$OutOfTree" || return
 	fi
 }
 
