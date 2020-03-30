@@ -188,6 +188,10 @@ build_libsndfile() {
 	mkdir -p "$BuildDir/libsndfile-$Arch" &&
 	cd "$BuildDir/libsndfile-$Arch" &&
 
+	# NOTE: CMAKE_SHARED_LIBRARY_NAME_WITH_VERSION is undocumented, but used
+	# with cygwin generator to create the expected binary name.
+	# TODO: Re-evaluate this after the next libsndfile release so we know
+	# exactly what upstream is doing. Might want to send a patch for non-cygwin.
 	CXX="$Arch-w64-mingw32-g++-posix" CC="$Arch-w64-mingw32-gcc-posix" cmake "$ScriptDir/libsndfile" \
 		-GNinja \
 		-DCMAKE_INSTALL_PREFIX="$ScriptDir/build/$Arch" \
@@ -198,6 +202,7 @@ build_libsndfile() {
 		-DCMAKE_RC_COMPILER="$Arch-w64-mingw32-windres" \
 		-DCMAKE_SYSROOT="/usr/$Arch-w64-mingw32" \
 		-DENABLE_STATIC_RUNTIME=ON \
+		-DCMAKE_SHARED_LIBRARY_NAME_WITH_VERSION=ON \
 		-DBUILD_SHARED_LIBS=ON \
 		-DBUILD_EXAMPLES=OFF \
 		-DBUILD_TESTING=OFF \
