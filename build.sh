@@ -3,7 +3,7 @@
 readonly FluidSynthVersion=2.1.1
 readonly GlibVersion=2.64.1
 readonly ProxyLibintlVersion=0.1
-readonly LibffiVersion=3.4.2
+readonly LibffiVersion=meson
 readonly ZlibVersion=1.2.11
 readonly ZlibPatchVersion=1.2.11-3
 readonly LibInstPatchVersion=1.1.3
@@ -232,7 +232,7 @@ fetch_sources() {
 	fetch_source "fluidsynth-$FluidSynthVersion.tar.gz" "https://github.com/FluidSynth/fluidsynth/archive/v$FluidSynthVersion.tar.gz" &&
 	fetch_source "glib-$GlibVersion.tar.xz" "https://download.gnome.org/sources/glib/2.64/glib-$GlibVersion.tar.xz" &&
 	fetch_source "proxy-libintl-$ProxyLibintlVersion.tar.gz" "https://github.com/frida/proxy-libintl/archive/$ProxyLibintlVersion.tar.gz" &&
-	fetch_source "libffi-$LibffiVersion.tar.gz" "https://github.com/libffi/libffi/releases/download/v$LibffiVersion/libffi-$LibffiVersion.tar.gz" &&
+	fetch_source "libffi-$LibffiVersion.tar.gz" "https://gitlab.freedesktop.org/gstreamer/meson-ports/libffi/-/archive/meson/libffi-$LibffiVersion.tar.gz" &&
 	fetch_source "zlib-$ZlibVersion.tar.gz" "https://zlib.net/fossils/zlib-$ZlibVersion.tar.gz" || return
 	fetch_source "libogg-$OggVersion.tar.xz" "http://downloads.xiph.org/releases/ogg/libogg-$OggVersion.tar.xz" || return
 	# For some reason the libvorbis and flac source distribution doesn't include the CMakeFiles from the git repo
