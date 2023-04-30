@@ -351,7 +351,7 @@ main() {
 		rm -rf build flac fluidsynth glib libinstpatch libogg libsndfile opus vorbis "$ScriptDir/"*.tar* || return
 	else
 		fetch_sources &&
-			patch_sources &&
+			# patch_sources &&
 			launch_container "$OutOfTree" || return
 	fi
 }
