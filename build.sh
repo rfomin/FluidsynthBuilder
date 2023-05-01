@@ -103,7 +103,7 @@ build_flac() {
 	ninja install/strip &&
 
 	# pkg-config file in wrong location
-	mv "$ScriptDir/build/$Arch/"{share,lib}/pkgconfig/flac.pc
+	# mv "$ScriptDir/build/$Arch/"{share,lib}/pkgconfig/flac.pc
 }
 
 build_opus() {
