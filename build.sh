@@ -100,7 +100,7 @@ build_flac() {
 		-DBUILD_CXXLIBS=OFF
 
 	ninja &&
-	ninja install/strip &&
+	ninja install/strip
 
 	# pkg-config file in wrong location
 	# mv "$ScriptDir/build/$Arch/"{share,lib}/pkgconfig/flac.pc
