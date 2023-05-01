@@ -11,7 +11,7 @@ readonly LibInstPatchVersion=1.1.3
 # libsndfile deps
 readonly OggVersion=1.3.4
 readonly VorbisVersion=1.3.6
-readonly FlacVersion=1.3.3
+readonly FlacVersion=1.4.2
 readonly OpusVersion=1.3.1
 readonly SndfileVersion=4bdd7414602946a18799b514001b0570e8693a47
 
