@@ -101,7 +101,7 @@ build_flac() {
 		-DBUILD_DOCS=OFF \
 		-DWITH_STACK_PROTECTOR=OFF \
 		-DINSTALL_MANPAGES=OFF \
-		-DBUILD_TESTING=OFF
+		-DBUILD_TESTING=OFF &&
 
 	ninja &&
 	ninja install/strip
