@@ -11,9 +11,9 @@ readonly LibInstPatchVersion=1.1.3
 # libsndfile deps
 readonly OggVersion=1.3.4
 readonly VorbisVersion=1.3.6
-readonly FlacVersion=1.4.2
+readonly FlacVersion=1.3.3
 readonly OpusVersion=1.3.1
-readonly SndfileVersion=1.0.31
+readonly SndfileVersion=4bdd7414602946a18799b514001b0570e8693a47
 
 readonly ScriptDir=${0%/*}
 declare BuildDir="$ScriptDir/build"
@@ -100,10 +100,10 @@ build_flac() {
 		-DBUILD_CXXLIBS=OFF
 
 	ninja &&
-	ninja install/strip
+	ninja install/strip &&
 
 	# pkg-config file in wrong location
-	# mv "$ScriptDir/build/$Arch/"{share,lib}/pkgconfig/flac.pc
+	mv "$ScriptDir/build/$Arch/"{share,lib}/pkgconfig/flac.pc
 }
 
 build_opus() {
@@ -239,7 +239,7 @@ fetch_sources() {
 	fetch_source "vorbis-$VorbisVersion.tar.gz" "https://github.com/xiph/vorbis/archive/v$VorbisVersion.tar.gz" || return
 	fetch_source "flac-$FlacVersion.tar.gz" "https://github.com/xiph/flac/archive/$FlacVersion.tar.gz" || return
 	fetch_source "opus-$OpusVersion.tar.gz" "https://archive.mozilla.org/pub/opus/opus-$OpusVersion.tar.gz" || return
-	fetch_source "libsndfile-$SndfileVersion.tar.bz2" "https://github.com/libsndfile/libsndfile/releases/download/$SndfileVersion/libsndfile-$SndfileVersion.tar.bz2" || return
+	fetch_source "libsndfile-$SndfileVersion.tar.gz" "https://github.com/erikd/libsndfile/archive/$SndfileVersion.tar.gz" || return
 	fetch_source "libinstpatch-$LibInstPatchVersion.tar.gz" "https://github.com/swami/libinstpatch/archive/v$LibInstPatchVersion.tar.gz" || return
 
 	if [[ -d proxy ]]; then
