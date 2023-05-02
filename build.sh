@@ -97,7 +97,10 @@ build_flac() {
 		-DCMAKE_RC_COMPILER="$Arch-w64-mingw32-windres" \
 		-DCMAKE_SYSROOT="/usr/$Arch-w64-mingw32" \
 		-DBUILD_EXAMPLES=OFF \
-		-DBUILD_CXXLIBS=OFF
+		-DBUILD_CXXLIBS=OFF \
+		-DBUILD_DOCS=OFF \
+		-DWITH_STACK_PROTECTOR=OFF \
+		-DINSTALL_MANPAGES=OFF
 
 	ninja &&
 	ninja install/strip &&
