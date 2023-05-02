@@ -104,10 +104,7 @@ build_flac() {
 		-DBUILD_TESTING=OFF
 
 	ninja &&
-	ninja install/strip &&
-
-	# pkg-config file in wrong location
-	mv "$ScriptDir/build/$Arch/"{share,lib}/pkgconfig/flac.pc
+	ninja install/strip
 }
 
 build_opus() {
