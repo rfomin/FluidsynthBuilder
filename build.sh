@@ -345,7 +345,7 @@ main() {
 			# build_libsndfile "$Arch" || return
 
 			build_glib "$Arch" &&
-				build_libinstpatch "$Arch" &&
+				# build_libinstpatch "$Arch" &&
 				build_fluidsynth "$Arch" || return
 		done
 	elif [[ $Mode == 'clean' ]]; then
