@@ -337,12 +337,12 @@ main() {
 			export PKG_CONFIG_PATH
 			PKG_CONFIG_PATH="$ScriptDir/build/$Arch/lib/pkgconfig"
 
-			build_libogg "$Arch" &&
-				build_flac "$Arch" &&
-				build_opus "$Arch" &&
-				build_vorbis "$Arch" || return
+			# build_libogg "$Arch" &&
+			# 	build_flac "$Arch" &&
+			# 	build_opus "$Arch" &&
+			# 	build_vorbis "$Arch" || return
 
-			build_libsndfile "$Arch" || return
+			# build_libsndfile "$Arch" || return
 
 			build_glib "$Arch" &&
 				build_libinstpatch "$Arch" &&
